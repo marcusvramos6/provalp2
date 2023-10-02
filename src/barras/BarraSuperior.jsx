@@ -5,7 +5,7 @@ export default function BarraSuperior(props){
     return(
         <div>
             <BarraBusca/>
-            <Carrinho/>
+            <Carrinho />
         </div>
     );
 }

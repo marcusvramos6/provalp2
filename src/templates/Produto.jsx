@@ -73,8 +73,11 @@ export default function Produto(props){
                         height: '40px',
                         width: '120px',
                     }}
-                    type='button'>
-                        Comprar
+                    type='button' onClick={() => props.addProduto({
+                        produto: props.produto,
+                        quantidade: quantidade
+                      })}>
+                       {"Comprar"}
                 </button>
             </div>
         </div>
