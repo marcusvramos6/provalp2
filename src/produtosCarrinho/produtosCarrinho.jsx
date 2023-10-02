@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Table } from "react-bootstrap";
+import { Alert, Button, Container, Table } from "react-bootstrap";
 import { FaEdit, FaTrash, FaCheck, FaTimes } from "react-icons/fa";
 
 export default function TabelaProdutos(props) {
@@ -47,7 +47,7 @@ export default function TabelaProdutos(props) {
       >
         Ver mais produtos
       </Button>
-      <Table striped bordered hover>
+      {props.produtosAdicionados.length === 0 ? <Alert>Ainda não há produtos em seu carrinho</Alert> : <Table striped bordered hover>
         <thead>
           <tr>
             <th>Nome</th>
@@ -120,7 +120,7 @@ export default function TabelaProdutos(props) {
             );
           })}
         </tbody>
-      </Table>
+      </Table>}
     </Container>
   );
 }

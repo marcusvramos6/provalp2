@@ -23,9 +23,22 @@ function App() {
 
   const addProduto = (produtoInfo) => {
     const { produto, quantidade } = produtoInfo;
-    const produtoComQuantidade = { ...produto, quantidade: quantidade };
-    setProdutosAdicionados([...produtosAdicionados, produtoComQuantidade]);
-    localStorage.setItem("produtosSelecionados", JSON.stringify([...produtosAdicionados, produtoComQuantidade]));
+    const produtoExistente = produtosAdicionados.find((p) => p.id === produto.id);
+  
+    if (produtoExistente) {
+      const produtosAtualizados = produtosAdicionados.map((p) => {
+        if (p.id === produto.id) {
+          return { ...p, quantidade: Number(p.quantidade) + Number(quantidade) };
+        }
+        return p;
+      });
+      setProdutosAdicionados(produtosAtualizados);
+      localStorage.setItem("produtosSelecionados", JSON.stringify(produtosAtualizados));
+    } else {
+      const produtoComQuantidade = { ...produto, quantidade: quantidade };
+      setProdutosAdicionados([...produtosAdicionados, produtoComQuantidade]);
+      localStorage.setItem("produtosSelecionados", JSON.stringify([...produtosAdicionados, produtoComQuantidade]));
+    }
   };
 
   function excluirProduto(produtoSel) {
