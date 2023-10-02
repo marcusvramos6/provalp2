@@ -1,6 +1,8 @@
 import { useState } from "react";
 export default function Produto(props){
     const [quantidade, setQuantidade] = useState(1);
+    const [adicionado, setAdicionado] = useState(false);
+
     return(
         <div style={{
             width: '200px',
@@ -73,11 +75,20 @@ export default function Produto(props){
                         height: '40px',
                         width: '120px',
                     }}
-                    type='button' onClick={() => props.addProduto({
+                    type='button' 
+                    onClick={() => {
+                      props.addProduto({
                         produto: props.produto,
                         quantidade: quantidade
-                      })}>
-                       {"Comprar"}
+                      });
+                      
+                      setAdicionado(true);
+                      
+                      setTimeout(() => {
+                        setAdicionado(false);
+                      }, 1000);
+                    }}>
+                       {adicionado ? "Adicionado" : "Comprar"}
                 </button>
             </div>
         </div>
